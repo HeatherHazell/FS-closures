@@ -1,5 +1,5 @@
 /*------------------
-1)
+1) DONE
 Create a function named "counter". It does
 not have any parameters.
 
@@ -16,13 +16,27 @@ console.log(counterOne()); // 3
 console.log(counterTwo()); // 1
 console.log(counterTwo()); // 2
 ------------------*/
+// function counter(){
+//   let y = "";
+//    function incrementY(){
+//     y ++;
+//     return y;
+//   }
+//   return incrementY
+// }
 
 
-
+// const counterOne = counter();
+// const counterTwo = counter();
+// console.log(counterOne()); // 1
+// console.log(counterOne()); // 2
+// console.log(counterOne()); // 3
+// console.log(counterTwo()); // 1
+// console.log(counterTwo()); // 2
 
 
 /*------------------
-2)
+2) DONE (Jim)
 Create a function named "startingCounter".
 It takes in one parameter, a number (x).
 
@@ -40,9 +54,32 @@ console.log(counterFour()); // 4
 console.log(counterFour()); // 5
 ------------------*/
 
+// function startingCounter(x){
+  //Declare and initialize state we want to hide/maintain
+  // let count = x;
+
+  //Declare (but don't call) the closure
+  // function incrementCount(){
+  //   count ++;
+
+  //   return count;
+  // }
+
+  //return new closure
+  // return incrementCount;
+
+// }
+
+// const counterThree = startingCounter(10);
+// const counterFour = startingCounter(3);
+// console.log(counterThree()); // 11
+// console.log(counterThree()); // 12
+// console.log(counterThree()); // 13
+// console.log(counterFour()); // 4
+// console.log(counterFour()); // 5
 
 /*------------------
-3)
+3) DONE
 Create a function named "countdown". It takes
 in one parameter, a number (x). Store x
 in a variable called count.
@@ -58,11 +95,25 @@ console.log(counterFive()); // 1
 console.log(counterFive()); // "Time's up!"
 console.log(counterFive()); // "Time's up!"
 ------------------*/
+// function countdown (x){
+//   count = x;
+//   function incrementCount(){
+//     while (count -- && count >= 1){
+//      return count;
+//   } count -- &&  count <= 0;
+//     return "Time's Up!"
+//   }
+//   return incrementCount
+//   }
 
-
+// const counterFive = countdown(3);
+// console.log(counterFive()); // 2
+// console.log(counterFive()); // 1
+// console.log(counterFive()); // "Time's up!"
+// console.log(counterFive()); // "Time's up!"
 
 /*------------------
-4)
+4) DONE
 Create a function named "multiplier"
 that takes in a number (x).
 
@@ -77,7 +128,16 @@ console.log(multiplyByFive(4)); // 20
 console.log(multiplyByTen(4)); // 40
 ------------------*/
 
+// function multiplier(x){
+//   return function (y) {
+//     return x * y;
+//   };
+// }
 
+// const multiplyByFive = multiplier(5);
+// const multiplyByTen = multiplier(10);
+// console.log(multiplyByFive(4)); // 20
+// console.log(multiplyByTen(4)); // 40
 
 /*------------------
 5)
@@ -95,11 +155,42 @@ const password = createPassword("123pass!");
 console.log(password("123pass!")); // Password correct.
 console.log(password("123pass")); // Password incorrect.
 ------------------*/
+// ATTEMPT
+// function createPassword(x){
+//   function trial(y){
+//   return x === y;
+// }
+// return trial 
+// }
+
+// ANSWER
+// function createPassword(x){
+//   function trial(y){
+//   while (x === y){
+//     return "Password is correct";
+//   }
+//   if (x !== y){
+//     return "Password is incorrrect";
+//   }
+// }
+// return trial 
+// }
 
 
+// MIRKA
+// function createPassword(x){
+//   return function userPassword(y){
+//     if (y === x) return "Password correct";
+//     if (y !== x) return "Password incorrect";
+//   }
+// }
 
+// const password = createPassword("123pass!");
+
+// console.log(password("123pass!")); // Password correct.
+// console.log(password("123pass")); // Password incorrect.
 /*------------------
-6)
+6) ERROR
 Create a function named "createBankAccount"
 that takes in a number (x). That number x
 should be stored in a variable called "balance".
@@ -121,7 +212,35 @@ console.log(marcoAccount(10, "add")); // 160
 console.log(marcoAccount(70, "subtract")); // 90
 ------------------*/
 
+  // function createBankAccount(x){
+  //   balance = x;
+  // }
+  //   function open(y, action){
+  //     while (action === "add"){
+  //       return balance += y;
+  //     }
+  //     if (action === "subtract"){
+  //       return balance -= y;
+  //     }
+  //     return open;
+  //     }
+  
 
+  // MIRKA
+  // function createBankAccount(x){
+  //   let balance = x;
+  //   return function transActivity(y, activity){
+  //     if (action === "add") return blaance +=y;
+  //     if (action === "subtract") return balance -= y;
+  //     return balance;
+  //     }
+  //   }
+
+  // const marcoAccount = createBankAccount(100);
+
+  // console.log(marcoAccount(50, "add")); // 150
+  // console.log(marcoAccount(10, "add")); // 160
+  // console.log(marcoAccount(70, "subtract")); // 90
 
 
 /*------------------
@@ -138,6 +257,7 @@ Look back at the other functions you created to make sure
 you understand how they work!
 ------------------*/
 
+// REVIEW ANSWER
 
 function createBank(password, startingBalance) {
   const checkPassword = createPassword(password);
@@ -146,9 +266,8 @@ function createBank(password, startingBalance) {
   return function(password, amount, action) {
     let access = checkPassword(password);
 
-    if (access === "CHANGE THIS TEXT") {
-      // use your bankAccount function
-      // to add or subtract money here
+    if (access === "Password correct") {
+      return bankAccount(amount, action);
     } else {
       return access;
     }
